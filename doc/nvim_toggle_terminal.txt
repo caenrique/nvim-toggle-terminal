@@ -1,0 +1,6 @@
+Toggle terminal buffer or create new one if there is none.
+
+nnoremap <silent> <C-z> :call mappings#toggleterminal()<Enter>
+tnoremap <silent> <C-z> <C-\><C-n>:call mappings#toggleterminal()<Enter>
+
+It keeps the shell session between toggles.
