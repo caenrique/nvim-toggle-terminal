@@ -11,8 +11,7 @@ FUNCTIONS                                     *nvim-toggle-terminal-functions*
 nvim_toggle_terminal#ToggleTerminal()  *nvim_toggle_terminal#ToggleTerminal()*
   Toggle terminal buffer or create new one if there is none.
 
-  nnoremap <silent> <C-z> :call mappings#toggleterminal()<Enter>
-  tnoremap <silent> <C-z> <C-\><C-n>:call mappings#toggleterminal()<Enter>
-
+  nnoremap <silent> <C-z> :call nvim-toggle-terminal#ToggleTerminal()<Enter>
+  tnoremap <silent> <C-z> <C-\><C-n>:call nvim-toggle-terminal#ToggleTerminal()<Enter>
 
 vim:tw=78:ts=8:ft=help:norl:
