@@ -2,8 +2,8 @@
 " @public
 " Toggle terminal buffer or create new one if there is none.
 "
-" nnoremap <silent> <C-z> :call mappings#toggleterminal()<Enter>
-" tnoremap <silent> <C-z> <C-\><C-n>:call mappings#toggleterminal()<Enter>
+" nnoremap <silent> <C-z> :call nvim-toggle-terminal#ToggleTerminal()<Enter>
+" tnoremap <silent> <C-z> <C-\><C-n>:call nvim-toggle-terminal#ToggleTerminal()<Enter>
 ""
 function! nvim_toggle_terminal#ToggleTerminal() abort
   if !has('nvim')
