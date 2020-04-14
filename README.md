@@ -43,3 +43,13 @@ nvim_wrapper() {
 
 alias nvim="nvim_wrapper"
 ```
+
+## Instalation
+
+Use your favourite plugin manager. For example, using [Plug](https://github.com/junegunn/vim-plug):
+
+```vim
+call plug#begin()
+Plug 'caenrique/nvim-toggle-terminal'
+call plug#end()
+```
