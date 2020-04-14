@@ -2,6 +2,8 @@ Toggle terminal buffer or create new one if there is none.
 
 ![](example-toggle-terminal.gif)
 
+You have to set your own mappings. For example:
+
 ```vim
 nnoremap <silent> <C-z> :call nvim_toggle_terminal#ToggleTerminal()<Enter>
 tnoremap <silent> <C-z> <C-\><C-n>:call nvim_toggle_terminal#ToggleTerminal()<Enter>
