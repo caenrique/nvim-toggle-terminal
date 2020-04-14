@@ -1,4 +1,5 @@
 Toggle terminal buffer or create new one if there is none.
+It keeps the shell session between toggles.
 
 ![](example-toggle-terminal.gif)
 
@@ -8,8 +9,6 @@ You have to set your own mappings. For example:
 nnoremap <silent> <C-z> :call nvim_toggle_terminal#ToggleTerminal()<Enter>
 tnoremap <silent> <C-z> <C-\><C-n>:call nvim_toggle_terminal#ToggleTerminal()<Enter>
 ```
-
-It keeps the shell session between toggles.
 
 Some extra setting that can be used in conjuction with this plugin for convenience:
 
