@@ -10,14 +10,23 @@ nnoremap <silent> <C-z> :call nvim_toggle_terminal#ToggleTerminal()<Enter>
 tnoremap <silent> <C-z> <C-\><C-n>:call nvim_toggle_terminal#ToggleTerminal()<Enter>
 ```
 
+## Useful nvim settings
+
 Some extra setting that can be used in conjuction with this plugin for convenience:
 
+Make your life easier by mapping ESC in terminal mode. And if you use fzf, this will not break the ESC behaviour:
+
 ```vim
-" Use ESC key to exit Terminal mode, but don't override fzf ESC mapping
 tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
 ```
 
-Use [nvr](https://github.com/mhinz/neovim-remote) to avoid nesting nvim in Terminal buffers. This should go in your `.bashrc` or similar.
+Use this to switch back and forth between files and terminal without the anoying `No write since last change (add ! to override)` with unsaved changes:
+
+```vim
+set autowriteall
+```
+
+Use [nvr](https://github.com/mhinz/neovim-remote) to avoid nesting nvim in Terminal buffers. This should go in your `.bashrc` or similar:
 
 ```bash
 nvim_wrapper() {
