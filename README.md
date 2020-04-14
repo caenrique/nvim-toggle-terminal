@@ -20,7 +20,7 @@ Make your life easier by mapping ESC in terminal mode. And if you use fzf, this 
 tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
 ```
 
-Use this to switch back and forth between files and terminal without the anoying `No write since last change (add ! to override)` with unsaved changes:
+Use this to switch back and forth between files and terminal without the anoying `No write since last change (add ! to override)` message with unsaved changes:
 
 ```vim
 set autowriteall
