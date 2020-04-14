@@ -1,4 +1,5 @@
 ""
+" @public
 " Toggle terminal buffer or create new one if there is none.
 "
 " nnoremap <silent> <C-z> :call mappings#toggleterminal()<Enter>
