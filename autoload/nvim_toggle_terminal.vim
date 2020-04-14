@@ -13,7 +13,6 @@ function! nvim_toggle_terminal#ToggleTerminal() abort
   let s:default_terminal = {
     \ 'loaded': v:null,
     \ 'termbufferid': v:null,
-    \ 'termwindowid': v:null,
     \ 'originbufferid': v:null
   \ }
 
