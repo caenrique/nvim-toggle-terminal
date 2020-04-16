@@ -12,8 +12,7 @@ function! nvim_toggle_terminal#ToggleTerminal() abort
 
   let s:default_terminal = {
     \ 'loaded': v:null,
-    \ 'termbufferid': v:null,
-    \ 'originbufferid': v:null
+    \ 'termbufferid': v:null
   \ }
 
   if !exists('g:terminal')
@@ -21,30 +20,32 @@ function! nvim_toggle_terminal#ToggleTerminal() abort
   endif
 
   function! g:terminal.on_exit(jobid, data, event)
-    silent execute 'buffer' g:terminal.originbufferid
+    silent execute 'buffer' w:originbufferid
     let g:terminal = copy(s:default_terminal)
   endfunction
 
   " If Terminal not open
   if !g:terminal.loaded
-    let g:terminal.originbufferid = bufnr('')
+    let s:originbufferid = bufnr('')
 
     enew | call termopen(&shell, g:terminal)
     set bufhidden=hide
     set nobuflisted
     let g:terminal.loaded = v:true
     let g:terminal.termbufferid = bufnr('')
+    let w:originbufferid = s:originbufferid
 
     return v:true
   endif
 
   if g:terminal.termbufferid ==# bufnr('')
     " Go back to origin buffer if current buffer is terminal.
-    silent execute 'buffer' g:terminal.originbufferid
+    silent execute 'buffer' w:originbufferid
   else
     " Go to terminal buffer if is loaded but not current buffer
-    let g:terminal.originbufferid = bufnr('')
+    let s:originbufferid = bufnr('')
     silent execute 'buffer' g:terminal.termbufferid
+    let w:originbufferid = s:originbufferid
   endif
 endfunction
 
