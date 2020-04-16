@@ -3,7 +3,7 @@ It keeps the shell session between toggles.
 
 ![](example-toggle-terminal.gif)
 
-You have to set your own mappings. For example:
+You have to set your own key bindings. For example:
 
 ```vim
 nnoremap <silent> <C-z> :call nvim_toggle_terminal#ToggleTerminal()<Enter>
