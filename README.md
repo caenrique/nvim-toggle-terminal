@@ -1,7 +1,9 @@
 Toggle terminal buffer or create new one if there is none.
 It keeps the shell session between toggles.
 
-![](example-toggle-terminal.gif)
+<p align="center">
+   <img src="https://i.imgur.com/vL96PcL.gif">
+<p>
 
 You have to set your own key bindings. For example:
 
