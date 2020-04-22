@@ -1,11 +1,3 @@
-""
-" @public
-" Toggle terminal buffer or create new one if there is none.
-"
-" nnoremap <silent> <C-z> :call nvim-toggle-terminal#ToggleTerminal()<Enter>
-" tnoremap <silent> <C-z> <C-\><C-n>:call nvim-toggle-terminal#ToggleTerminal()<Enter>
-""
-
 let g:toggle_terminal_tab_specific = get(g:, 'toggle_terminal_tab_specific', 0)
 
 let s:default_terminal = {
@@ -13,6 +5,10 @@ let s:default_terminal = {
   \ 'termbufferid': v:null
 \ }
 
+""
+" @public
+" Toggle terminal buffer or create new one if there is none.
+""
 function! nvim_toggle_terminal#ToggleTerminal() abort
   if !has('nvim')
     return v:false
@@ -25,6 +21,10 @@ function! nvim_toggle_terminal#ToggleTerminal() abort
   endif
 endfunction
 
+""
+" @public
+" Toggle terminal buffer associated to `terminal_ref`. It will have the same scope as the variable.
+""
 function! nvim_toggle_terminal#Toggle(terminal_ref) abort
   if !exists(a:terminal_ref)
     let {a:terminal_ref} = copy(s:default_terminal)
