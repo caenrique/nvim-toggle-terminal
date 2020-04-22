@@ -12,6 +12,34 @@ nnoremap <silent> <C-z> :call nvim_toggle_terminal#ToggleTerminal()<Enter>
 tnoremap <silent> <C-z> <C-\><C-n>:call nvim_toggle_terminal#ToggleTerminal()<Enter>
 ```
 
+Use `g:toggle_terminal_tab_specific` to configure tab specific terminal instances:
+
+```vim
+let g:toggle_terminal_tab_specific = 1
+```
+
+This config variable only apply to the `nvim_toggle_terminal#ToggleTerminal` function. However, you could avoid that function and use `nvim_toggle_terminal#Toggle` directly.
+
+Define a key binding for the global terminal instance, and another one for the tab-specific instance:
+
+```vim
+" Global terminal intances
+nnoremap <silent> <C-z> :call nvim_toggle_terminal#Toggle("g:terminal")<Enter>
+tnoremap <silent> <C-z> <C-\><C-n>:call nvim_toggle_terminal#Toggle("g:terminal")<Enter>
+
+" Tab-specific terminal instance
+nnoremap <silent> <C-x> :call nvim_toggle_terminal#Toggle("t:terminal")<Enter>
+tnoremap <silent> <C-x> <C-\><C-n>:call nvim_toggle_terminal#Toggle("t:terminal")<Enter>
+```
+
+or even a window-specific terminal using:
+
+```vim
+nvim_toggle_terminal#Toggle("w:terminal")
+```
+
+The name of the variable doesn't matter. It is the scope what is important.
+
 ## Useful nvim settings
 
 Some extra setting that can be used in conjuction with this plugin for convenience:
