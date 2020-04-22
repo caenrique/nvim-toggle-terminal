@@ -6,7 +6,7 @@
 " tnoremap <silent> <C-z> <C-\><C-n>:call nvim-toggle-terminal#ToggleTerminal()<Enter>
 ""
 
-let g:toggle_terminal_tab_specific = get(g:, 'toggle_terminal_tab_specific', 1)
+let g:toggle_terminal_tab_specific = get(g:, 'toggle_terminal_tab_specific', 0)
 
 let s:default_terminal = {
   \ 'loaded': v:null,
