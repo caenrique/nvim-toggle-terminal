@@ -23,7 +23,7 @@ This config variable only apply to the `nvim_toggle_terminal#ToggleTerminal` fun
 Define a key binding for the global terminal instance, and another one for the tab-specific instance:
 
 ```vim
-" Global terminal intances
+" Global terminal intance
 nnoremap <silent> <C-z> :call nvim_toggle_terminal#Toggle("g:terminal")<Enter>
 tnoremap <silent> <C-z> <C-\><C-n>:call nvim_toggle_terminal#Toggle("g:terminal")<Enter>
 
