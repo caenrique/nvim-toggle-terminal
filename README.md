@@ -26,6 +26,16 @@ tnoremap <silent> <C-z> <C-\><C-n>:ToggleTerminal<Enter>
 |-----------------------------|-------------------------------------------------------------------------------------------|---------|
 | g:preserve_alternate_buffer | Preserve the alternate_buffer of the current window when opening and closing the terminal | 1       |
 
+## Instalation
+
+Use your favourite plugin manager. For example, using [Plug](https://github.com/junegunn/vim-plug):
+
+```vim
+call plug#begin()
+Plug 'caenrique/nvim-toggle-terminal'
+call plug#end()
+```
+
 ## Useful nvim settings
 
 Some extra setting that can be used in conjuction with this plugin for convenience:
@@ -58,14 +68,4 @@ nvim_wrapper() {
 }
 
 alias nvim="nvim_wrapper"
-```
-
-## Instalation
-
-Use your favourite plugin manager. For example, using [Plug](https://github.com/junegunn/vim-plug):
-
-```vim
-call plug#begin()
-Plug 'caenrique/nvim-toggle-terminal'
-call plug#end()
 ```
