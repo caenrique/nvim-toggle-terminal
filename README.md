@@ -20,7 +20,7 @@ tnoremap <silent> <C-z> <C-\><C-n>:ToggleTerminal<Enter>
 | :ToggleTabTerminal    | Toggles a tab specific terminal instance. It will a different shell session for each tab            |
 | :ToggleWindowTerminal | Toggles a window specific terminal instance. It will hace a different shell session for each window |
 
-# Settings
+## Settings
 
 | Setting                     | Description                                                                               | Default |
 |-----------------------------|-------------------------------------------------------------------------------------------|---------|
