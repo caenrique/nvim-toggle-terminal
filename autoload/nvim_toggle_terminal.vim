@@ -58,7 +58,6 @@ function! nvim_toggle_terminal#Toggle(terminal_ref) abort
     unlet w:originbufferid
   else
     " Go to terminal buffer if is loaded but not current buffer
-    echo "somethis happening"
     let w:alternate_buffer = exists("w:alternate_buffer") ? w:alternate_buffer : @#
     let w:originbufferid = exists("w:originbufferid") ? w:originbufferid : bufnr('')
     let l:id = get({a:terminal_ref}, "termbufferid")
