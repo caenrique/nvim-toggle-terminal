@@ -16,9 +16,15 @@ tnoremap <silent> <C-z> <C-\><C-n>:ToggleTerminal<Enter>
 
 | Command               | Description                                                                                         |
 |-----------------------|-----------------------------------------------------------------------------------------------------|
-| :ToggleTerminal       | Toggles the terminal based on g:toggle_terminal_tab_specific                                        |
+| :ToggleTerminal       | Toggles a terminal which is the same shell instance regardless of where it is called                |
 | :ToggleTabTerminal    | Toggles a tab specific terminal instance. It will a different shell session for each tab            |
 | :ToggleWindowTerminal | Toggles a window specific terminal instance. It will hace a different shell session for each window |
+
+# Settings
+
+| Setting                     | Description                                                                               | Default |
+|-----------------------------|-------------------------------------------------------------------------------------------|---------|
+| g:preserve_alternate_buffer | Preserve the alternate_buffer of the current window when opening and closing the terminal | 1       |
 
 ## Useful nvim settings
 
