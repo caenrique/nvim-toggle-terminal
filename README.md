@@ -36,7 +36,7 @@ Plug 'caenrique/nvim-toggle-terminal'
 call plug#end()
 ```
 
-## Useful nvim settings
+## Other useful settings
 
 Some extra setting that can be used in conjuction with this plugin for convenience:
 
