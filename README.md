@@ -8,37 +8,17 @@ It keeps the shell session between toggles.
 You have to set your own key bindings. For example:
 
 ```vim
-nnoremap <silent> <C-z> :call nvim_toggle_terminal#ToggleTerminal()<Enter>
-tnoremap <silent> <C-z> <C-\><C-n>:call nvim_toggle_terminal#ToggleTerminal()<Enter>
+nnoremap <silent> <C-z> :ToggleTerminal<Enter>
+tnoremap <silent> <C-z> <C-\><C-n>:ToggleTerminal<Enter>
 ```
 
-Use `g:toggle_terminal_tab_specific` to configure tab specific terminal instances:
+## Commands
 
-```vim
-let g:toggle_terminal_tab_specific = 1
-```
-
-This config variable only apply to the `nvim_toggle_terminal#ToggleTerminal` function. However, you could avoid that function and use `nvim_toggle_terminal#Toggle` directly.
-
-Define a key binding for the global terminal instance, and another one for the tab-specific instance:
-
-```vim
-" Global terminal intance
-nnoremap <silent> <C-z> :call nvim_toggle_terminal#Toggle("g:terminal")<Enter>
-tnoremap <silent> <C-z> <C-\><C-n>:call nvim_toggle_terminal#Toggle("g:terminal")<Enter>
-
-" Tab-specific terminal instance
-nnoremap <silent> <C-x> :call nvim_toggle_terminal#Toggle("t:terminal")<Enter>
-tnoremap <silent> <C-x> <C-\><C-n>:call nvim_toggle_terminal#Toggle("t:terminal")<Enter>
-```
-
-or even a window-specific terminal using:
-
-```vim
-nvim_toggle_terminal#Toggle("w:terminal")
-```
-
-The name of the variable doesn't matter. It is the scope what is important.
+| Command               | Description                                                                                         |
+|-----------------------|-----------------------------------------------------------------------------------------------------|
+| :ToggleTerminal       | Toggles the terminal based on g:toggle_terminal_tab_specific                                        |
+| :ToggleTabTerminal    | Toggles a tab specific terminal instance. It will a different shell session for each tab            |
+| :ToggleWindowTerminal | Toggles a window specific terminal instance. It will hace a different shell session for each window |
 
 ## Useful nvim settings
 

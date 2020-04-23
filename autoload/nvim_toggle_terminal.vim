@@ -1,50 +1,49 @@
-let g:toggle_terminal_tab_specific = get(g:, 'toggle_terminal_tab_specific', 0)
-
 let s:default_terminal = {
   \ 'loaded': v:null,
   \ 'termbufferid': v:null
 \ }
 
 ""
-" @public
-" Toggle terminal buffer or create new one if there is none.
-""
-function! nvim_toggle_terminal#ToggleTerminal() abort
-  if !has('nvim')
-    return v:false
-  endif
+" Preserve the alternate_buffer of the current window when opening and closing
+" the terminal. Default is 1 (true)
+let g:preserve_alternate_buffer = get(g:, 'preserve_alternate_buffer', 1)
 
-  if g:toggle_terminal_tab_specific
-    call nvim_toggle_terminal#Toggle("t:terminal")
-  else
-    call nvim_toggle_terminal#Toggle("g:terminal")
-  endif
+""
+" @deprecated Use nvim_toggle_terminal#Toggle or the provided commands instead
+" Toggle terminal buffer or create new one if there is none.
+function! nvim_toggle_terminal#ToggleTerminal() abort
+  call nvim_toggle_terminal#Toggle("g:terminal")
 endfunction
 
 ""
 " @public
 " Toggle terminal buffer associated to `terminal_ref`. It will have the same scope as the variable.
-""
 function! nvim_toggle_terminal#Toggle(terminal_ref) abort
+  if !has('nvim')
+    return v:false
+  endif
+
   if !exists(a:terminal_ref)
     let {a:terminal_ref} = copy(s:default_terminal)
   endif
 
+  let s:tr = a:terminal_ref
   function! {a:terminal_ref}.on_exit(jobid, data, event)
     silent execute 'buffer' w:originbufferid
-    let {a:terminal_ref} = copy(s:default_terminal)
+    let {s:tr} = copy(s:default_terminal)
   endfunction
 
   " If Terminal not open
   if !get({a:terminal_ref}, "loaded")
-    let s:originbufferid = exists("w:originbufferid") ? w:originbufferid : bufnr('')
+    let w:originbufferid = exists("w:originbufferid") ? w:originbufferid : bufnr('')
+    let w:alternate_buffer = exists("w:alternate_buffer") ? w:alternate_buffer : @#
 
-    enew | call termopen(&shell, {a:terminal_ref})
+    enew
+    call termopen(&shell, {a:terminal_ref})
     set bufhidden=hide
     set nobuflisted
     let {a:terminal_ref}.loaded = v:true
     let {a:terminal_ref}.termbufferid = bufnr('')
-    let w:originbufferid = s:originbufferid
 
     return v:true
   endif
@@ -52,12 +51,18 @@ function! nvim_toggle_terminal#Toggle(terminal_ref) abort
   if get({a:terminal_ref}, "termbufferid") ==# bufnr('')
     " Go back to origin buffer if current buffer is terminal.
     silent execute 'buffer' w:originbufferid
+    if g:preserve_alternate_buffer
+      let @# = w:alternate_buffer
+    endif
+    unlet w:alternate_buffer
+    unlet w:originbufferid
   else
     " Go to terminal buffer if is loaded but not current buffer
-    let s:originbufferid = exists("w:originbufferid") ? w:originbufferid : bufnr('')
+    echo "somethis happening"
+    let w:alternate_buffer = exists("w:alternate_buffer") ? w:alternate_buffer : @#
+    let w:originbufferid = exists("w:originbufferid") ? w:originbufferid : bufnr('')
     let l:id = get({a:terminal_ref}, "termbufferid")
     silent execute 'buffer' l:id
-    let w:originbufferid = s:originbufferid
   endif
 endfunction
 
