@@ -17,8 +17,8 @@ tnoremap <silent> <C-z> <C-\><C-n>:ToggleTerminal<Enter>
 | Command               | Description                                                                                         |
 |-----------------------|-----------------------------------------------------------------------------------------------------|
 | :ToggleTerminal       | Toggles a terminal which is the same shell instance regardless of where it is called                |
-| :ToggleTabTerminal    | Toggles a tab specific terminal instance. It will a different shell session for each tab            |
-| :ToggleWindowTerminal | Toggles a window specific terminal instance. It will hace a different shell session for each window |
+| :ToggleTabTerminal    | Toggles a tab specific terminal instance. It will have a different shell session for each tab            |
+| :ToggleWindowTerminal | Toggles a window specific terminal instance. It will have a different shell session for each window |
 
 ## Settings
 
