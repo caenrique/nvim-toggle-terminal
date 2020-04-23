@@ -22,11 +22,11 @@ COMMANDS                                       *nvim-toggle-terminal-commands*
   is called
 
 :ToggleTabTerminal                                        *:ToggleTabTerminal*
-  Toggles a tab specific terminal instance. It will a different shell session
-  for each tab
+  Toggles a tab specific terminal instance. It will a have different shell
+  session for each tab
 
 :ToggleWindowTerminal                                  *:ToggleWindowTerminal*
-  Toggles a window specific terminal instance. It will hace a different shell
+  Toggles a window specific terminal instance. It will have a different shell
   session for each window
 
 ==============================================================================
