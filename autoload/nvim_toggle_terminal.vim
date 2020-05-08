@@ -9,6 +9,14 @@ let s:default_terminal = {
 let g:preserve_alternate_buffer = get(g:, 'preserve_alternate_buffer', 1)
 
 ""
+" enter insert mode automatically when given focus. Uses BufEnter event
+let g:auto_start_insert = get(g:, 'auto_start_insert', 1)
+
+""
+" start in insert mode when you open the terminal. Uses BufWinEnter event
+let g:open_in_insert_mode = get(g:, 'open_in_insert_mode', 1)
+
+""
 " @deprecated Use nvim_toggle_terminal#Toggle or the provided commands instead
 " Toggle terminal buffer or create new one if there is none.
 function! nvim_toggle_terminal#ToggleTerminal() abort
@@ -35,7 +43,7 @@ function! nvim_toggle_terminal#Toggle(terminal_ref) abort
 
   " If Terminal not open
   if !get({a:terminal_ref}, "loaded")
-    let w:originbufferid = exists("w:originbufferid") ? w:originbufferid : bufnr('')
+    let w:originbufferid = exists("w:originbufferid") ? w:originbufferid : bufnr()
     let w:alternate_buffer = exists("w:alternate_buffer") ? w:alternate_buffer : @#
 
     enew
@@ -48,27 +56,35 @@ function! nvim_toggle_terminal#Toggle(terminal_ref) abort
     return v:true
   endif
 
-  if get({a:terminal_ref}, "termbufferid") ==# bufnr('')
+  if get({a:terminal_ref}, "termbufferid") ==# bufnr()
     " Go back to origin buffer if current buffer is terminal.
-    silent execute 'buffer' w:originbufferid
-    if g:preserve_alternate_buffer
-      let @# = w:alternate_buffer
+    if exists("w:originbufferid")
+      silent execute 'buffer' w:originbufferid
+      if g:preserve_alternate_buffer && w:alternate_buffer !=? ''
+        let @# = w:alternate_buffer
+      endif
+      unlet w:alternate_buffer
+      unlet w:originbufferid
+    else
+      echo "There is no buffer to go back to!"
     endif
-    unlet w:alternate_buffer
-    unlet w:originbufferid
   else
     " Go to terminal buffer if is loaded but not current buffer
     let w:alternate_buffer = exists("w:alternate_buffer") ? w:alternate_buffer : @#
-    let w:originbufferid = exists("w:originbufferid") ? w:originbufferid : bufnr('')
+    let w:originbufferid = exists("w:originbufferid") ? w:originbufferid : bufnr()
     let l:id = get({a:terminal_ref}, "termbufferid")
     silent execute 'buffer' l:id
   endif
 endfunction
 
 function! nvim_toggle_terminal#TerminalOptions()
-  silent au BufEnter <buffer> startinsert!
-  silent au BufLeave <buffer> stopinsert!
   setlocal listchars= nonumber norelativenumber
-  startinsert!
+  if g:auto_start_insert
+    silent au BufEnter <buffer> startinsert!
+    silent au BufLeave <buffer> stopinsert!
+  endif
+  if g:open_in_insert_mode
+    silent au BufWinEnter <buffer> startinsert!
+    startinsert!
+  endif
 endfunction
-
