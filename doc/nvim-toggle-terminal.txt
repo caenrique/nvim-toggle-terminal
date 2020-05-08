@@ -14,6 +14,13 @@ CONFIGURATION                                    *nvim-toggle-terminal-config*
 Preserve the alternate_buffer of the current window when opening and closing
 the terminal. Default is 1 (true)
 
+                                                         *g:auto_start_insert*
+add autocommands to the terminal buffer to enter insert mode automatically
+when given focus
+
+                                                       *g:open_in_insert_mode*
+start in insert mode when you open the terminal
+
 ==============================================================================
 COMMANDS                                       *nvim-toggle-terminal-commands*
 
