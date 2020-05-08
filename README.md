@@ -25,6 +25,8 @@ tnoremap <silent> <C-z> <C-\><C-n>:ToggleTerminal<Enter>
 | Setting                     | Description                                                                               | Default |
 |-----------------------------|-------------------------------------------------------------------------------------------|---------|
 | g:preserve_alternate_buffer | Preserve the alternate_buffer of the current window when opening and closing the terminal | 1       |
+| g:auto_start_insert         | enter insert mode automatically when given focus. Uses BufEnter event                     | 1       |
+| g:open_in_insert_mode       | start in insert mode when you open the terminal. Uses BufWinEnter event                   | 1       |
 
 ## Instalation
 
