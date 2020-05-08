@@ -10,7 +10,7 @@ let g:preserve_alternate_buffer = get(g:, 'preserve_alternate_buffer', 1)
 
 ""
 " enter insert mode automatically when given focus. Uses BufEnter event
-let g:auto_start_insert = get(g:, 'auto_start_insert', 1)
+let g:auto_start_insert = get(g:, 'auto_start_insert', 0)
 
 ""
 " start in insert mode when you open the terminal. Uses BufWinEnter event
