@@ -37,7 +37,7 @@ function! nvim_toggle_terminal#Toggle(terminal_ref) abort
 
   let s:tr = a:terminal_ref
   function! {a:terminal_ref}.on_exit(jobid, data, event)
-    silent execute 'buffer' w:originbufferid
+    silent execute 'keepjumps buffer' w:originbufferid
     let {s:tr} = copy(s:default_terminal)
   endfunction
 
@@ -46,7 +46,7 @@ function! nvim_toggle_terminal#Toggle(terminal_ref) abort
     let w:originbufferid = exists("w:originbufferid") ? w:originbufferid : bufnr()
     let w:alternate_buffer = exists("w:alternate_buffer") ? w:alternate_buffer : @#
 
-    enew
+    keepjumps enew
     call termopen(&shell, {a:terminal_ref})
     set bufhidden=hide
     set nobuflisted
@@ -59,7 +59,7 @@ function! nvim_toggle_terminal#Toggle(terminal_ref) abort
   if get({a:terminal_ref}, "termbufferid") ==# bufnr()
     " Go back to origin buffer if current buffer is terminal.
     if exists("w:originbufferid")
-      silent execute 'buffer' w:originbufferid
+      silent execute 'keepjumps buffer' w:originbufferid
       if g:preserve_alternate_buffer && w:alternate_buffer !=? ''
         let @# = w:alternate_buffer
       endif
@@ -73,7 +73,7 @@ function! nvim_toggle_terminal#Toggle(terminal_ref) abort
     let w:alternate_buffer = exists("w:alternate_buffer") ? w:alternate_buffer : @#
     let w:originbufferid = exists("w:originbufferid") ? w:originbufferid : bufnr()
     let l:id = get({a:terminal_ref}, "termbufferid")
-    silent execute 'buffer' l:id
+    silent execute 'keepjumps buffer' l:id
   endif
 endfunction
 
