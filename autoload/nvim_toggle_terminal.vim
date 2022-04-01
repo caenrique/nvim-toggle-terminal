@@ -77,6 +77,19 @@ function! nvim_toggle_terminal#Toggle(terminal_ref) abort
   endif
 endfunction
 
+function! nvim_toggle_terminal#CloseAny()
+  if exists("w:originbufferid")
+    silent execute 'keepjumps buffer' w:originbufferid
+    if g:preserve_alternate_buffer && w:alternate_buffer !=? ''
+      let @# = w:alternate_buffer
+    endif
+    unlet w:alternate_buffer
+    unlet w:originbufferid
+  else
+    echo "There is no buffer to go back to!"
+  endif
+endfunction
+
 function! nvim_toggle_terminal#TerminalOptions()
   setlocal listchars= nonumber norelativenumber
   if g:auto_start_insert
