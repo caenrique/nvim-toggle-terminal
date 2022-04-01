@@ -47,7 +47,7 @@ function! nvim_toggle_terminal#Toggle(terminal_ref) abort
     let w:alternate_buffer = exists("w:alternate_buffer") ? w:alternate_buffer : @#
 
     keepjumps enew
-    call termopen(&shell, {a:terminal_ref})
+    call termopen([&shell], {a:terminal_ref})
     set bufhidden=hide
     set nobuflisted
     let {a:terminal_ref}.loaded = v:true

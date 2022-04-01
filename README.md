@@ -58,16 +58,16 @@ Use [nvr](https://github.com/mhinz/neovim-remote) to avoid nesting nvim in Termi
 
 ```bash
 nvim_wrapper() {
+  NVIM=`which nvim`
   if test -z $NVIM_LISTEN_ADDRESS; then
-      nvim $argv
+      $NVIM $@
   else
-    if test -z $argv; then
+    if test -z $@; then
         nvr -l -c new
     else
-        nvr -l $argv
+        nvr -l $@
     fi
   fi
 }
-
 alias nvim="nvim_wrapper"
 ```
