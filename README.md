@@ -1,3 +1,7 @@
+⚠️ NOT MAINTAINED ANYMORE! ⚠️
+
+🆕 ➡️ See new version written in lua: https://github.com/caenrique/buffer-term.nvim
+
 Toggle terminal buffer or create new one if there is none.
 It keeps the shell session between toggles.
 
